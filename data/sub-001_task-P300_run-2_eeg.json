@@ -1,0 +1,26 @@
+{
+  "InstitutionAddress": "Pavillon Baudot CHU Purpan, BP 25202, 31052 Toulouse Cedex",
+  "InstitutionName": "Paul Sabatier Universite",
+  "InstitutionalDepartmentName": "Centre de Recherche Cerveau et Cognition",
+  "PowerLineFrequency": 50,
+  "ManufacturersModelName": "Biosemi Active 2",
+  "TaskName": "P300",
+  "EEGReference": "CMS\/DRL",
+  "Manufacturer": "BIOSEMI",
+  "EEGChannelCount": 64,
+  "MiscChannelCount": 11,
+  "RecordingType": "continuous",
+  "RecordingDuration": 757,
+  "SamplingFrequency": 256,
+  "SubjectArtefactDescription": "She changed push button hands during the experiment (in the middle of trials)",
+  "EOGChannelCount": 0,
+  "ECGChannelCount": 0,
+  "EMGChannelCount": 0,
+  "SoftwareFilters": {
+    "FilterDescription": {
+      "Description": "n\/a"
+    }
+  },
+  "Instructions": "Close your eyes. Press the button when you hear the high pitch sound and ignore other sounds.",
+  "TaskDescription": "Participants were instructed to close their eyes and respond to oddball sounds. There were 3 types of sounds interspaced by about 1 second each, standard (500 Hz pure sounds lasting 60 ms), oddball (1000 Hz pure sounds lasting 60 ms), or distractor sounds (white noise lasting 60 ms). Participants were instructed to press a keypad on their lap when hearing an oddball and to ignore other types of stimuli. See experimental code for additional details."
+}
