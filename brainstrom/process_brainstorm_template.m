@@ -1,25 +1,37 @@
-% Difference with Youtube script
-% - change location of the file
-% - remove commented text
-% - remove plotting (could not remove all)
-% - reworked code to import epoched data trials
-% - add input filename
-% - removed code for DC offset
+% This script is part of the code used to generate the results presented in:
+% Delorme A. EEG is better left alone. Sci Rep. 2023 Feb 9;13(1):2372. doi: 10.1038/s41598-023-27528-0. PMID: 36759667; PMCID: PMC9911389.
+% https://pubmed.ncbi.nlm.nih.gov/36759667/
+%
+% This contains the code for the optimal Brainstorm pipeline in the paper above.
+% An example dataset is provided in the data folder.
+% Simple plotting for one channel for the two conditions is provided at the end of the script.
+%
+% Requires to have Brainstorm installed
+% Tested successfully with Brainstorm version of 05-Aug-2022
+% Brainstorm is being used in server mode so the GUI will not pop up
+% Note: Brainstorm is primarily a GUI software. Most of the code below
+%       is undocumented so use at your own risk. If you encounter problems,
+%       start Brainstorm at least once and create a protocol manually.
+%
+% Arnaud Delorme, 2022
 
-% Arnaud Delorme, Aug 9th, 2022
+% beginning of parameters ************
 
+% You may select your own file and conditions below
 clear
 fileName = fullfile('..', 'data', 'sub-001_task-P300_run-2_eeg.set'); % file name to process
 conditions  = { 'oddball_with_reponse' 'standard' }; % conditions
-badChans = {}; % list of bad channels
+badChans = {'EXG1','EXG2','EXG3','EXG4','EXG5','EXG6','EXG7','EXG8','GSR1','GSR2','Erg1','Erg2','Resp','Plet','Temp'}; % list of channels to ignore if any
 epochLimits = [-0.3 0.7];
+
+% end of parameters ************
 
 if ~brainstorm('status')
     brainstorm server
 end
 
 % Delete protocol if it exist and re-create it
-protocol   = 'TestEEGLAB';
+protocol   = 'TestPipeline'; 
 brainstorm_path = bst_get('BrainstormDbDir');
 iProtocol = bst_get('Protocol', protocol);
 if ~isempty(iProtocol)
@@ -45,7 +57,7 @@ sFiles = { OutputFile{1}(posNewSubject:end) };
 
 % In case there are bad channels 
 if ~isempty(badChans)
-    sFiles = bst_process('CallProcess', 'process_channel_setbad', sFiles, [], 'sensortypes', removeChans);
+    sFiles = bst_process('CallProcess', 'process_channel_setbad', sFiles, [], 'sensortypes', badChans);
 end
 
 % Process: High-pass
@@ -76,8 +88,9 @@ sFiles = bst_process('CallProcess', 'process_evt_rename', sFiles, [], ...
     'src',   '1-7Hz', ...
     'dest',  'bad_1-7Hz');
 
-% Process: Re-reference EEG
-if 0 % not advised because it decreases the number of signficant electrodes
+% Process: Re-reference EEG not advised because it decreases the number of signficant electrodes
+% as indicated in the paper referenced at the beginning
+if 0 
     sFiles = bst_process('CallProcess', 'process_eegref', sFiles, [], ...
         'eegref',      'AVERAGE', ...
         'sensortypes', 'EEG');
@@ -108,11 +121,21 @@ sFilesEpochs1 = bst_process('CallProcess', 'process_detectbad', sFilesEpochs1, [
 
 close;
 
-% export data to EEGLAB
-if 0
-    % save epochs as EEGLAB format, requires to have EEGLAB 2022.1 or later installed
-    EEGcond1 = brainstorm2eeglab(sFilesEpochs1, conditions{1});
-    EEGcond2 = brainstorm2eeglab(sFilesEpochs1, conditions{2});
-    pop_saveset(EEGcond1, 'filename', [ fileName(1:end-4) '_cond1.set' ]);
-    pop_saveset(EEGcond2, 'filename', [ fileName(1:end-4) '_cond2.set' ]);
+% Read data and plot one channel
+prot = bst_get('ProtocolInfo');
+brainstorm_path = bst_get('BrainstormDbDir');
+cond1Data = {};
+cond2Data = {};
+for iEpoch = 1:length(sFilesEpochs1)
+    epochStruct = load('-mat', fullfile(brainstorm_path, protocol, 'data', sFilesEpochs1(iEpoch).FileName));
+    if     contains(epochStruct.Comment, conditions{1})  cond1Data{end+1} = epochStruct.F;
+    elseif contains(epochStruct.Comment, conditions{2})  cond2Data{end+1} = epochStruct.F;
+    end
 end
+cond1Data = reshape([ cond1Data{:} ], size(cond1Data{1},1), size(cond1Data{1},2), []);
+cond2Data = reshape([ cond2Data{:} ], size(cond2Data{1},1), size(cond2Data{1},2), []);
+figure;
+plot(mean(cond1Data(2,:,:),3)); hold on;
+plot(mean(cond2Data(2,:,:),3),'r');
+title('ERP for each condition for channel 2');
+h = legend(conditions{:}); set (h, 'Interpreter', 'none')
