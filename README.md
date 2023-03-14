@@ -2,7 +2,7 @@
 
 # Why is EEG better left alone?
 
-The best is to read the article. In short, for standard, relatively clean EEG, removing artifacts cannot compensate for the loss of statistical power due to the loss of data trials. 
+The best is to read the article. In short, for standard, relatively clean EEG, removing artifacts cannot compensate for the loss of statistical power due to the reduced number of data trials. 
 
 https://www.nature.com/articles/s41598-023-27528-0
 
