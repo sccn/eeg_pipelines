@@ -10,5 +10,4 @@ https://www.nature.com/articles/s41598-023-27528-0
 
 This repository contains 4 stand-alone pipelines (along with one test dataset), in EEGLAB, Fieldtrip, Brainstorm, and MNE. The pipelines have been optimized to process event-related potential and are described in the manuscript above. The pipelines run on the sample data provided here. They do require a separate installation of the corresponding software packages.
 
-Based on our scanning of the parameter space for artifact rejection and preprocessing, these are the **best EEG pipelines** for EEGLAB, Fieldtrip, Brainstorm, and MNE to process ERP. Test them yourself by pluggin in your own data in the pipelines.
-
+Based on our scanning of the parameter space for artifact rejection and preprocessing, these are the **best EEG pipelines** for EEGLAB, Fieldtrip, Brainstorm, and MNE to process ERP. Test them yourself by plugging in your data.
