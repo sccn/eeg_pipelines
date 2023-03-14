@@ -1,4 +1,4 @@
-![Screen Shot 2023-03-13 at 8 14 04 PM](https://user-images.githubusercontent.com/1872705/224911989-4e8f2971-5f6a-469f-9022-b8eac2953346.png)
+![Screen Shot 2023-03-13 at 8 48 38 PM](https://user-images.githubusercontent.com/1872705/224918420-88cecd89-7335-4f84-b8bd-7597d30b8b70.png)
 
 # Why is EEG better left alone?
 
