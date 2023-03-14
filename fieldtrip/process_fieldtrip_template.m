@@ -11,8 +11,6 @@
 
 % Arnaud Delorme, 2022
 
-
-
 % beginning of parameters ************
 
 % You may select your own file and conditions below, and change other parameters as well

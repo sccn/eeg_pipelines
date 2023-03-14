@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 
-# Difference with YOUTUBE version
-# - read EEGLAB file directly instead of using BIDS (so the local file to the BIDS repo can be used)
-# - removed montage (this was not necessary)
-# - removing ICA (did nothing)
-# - remove average and plotting
-# - export two files, one for oddball and one for standard
-# - added notch
-# - remove jupyter notebook sections
-
-# This is the best MNE automated EEG pipeline parameters based on processing data
-# from 3 EEG experiments
-
-# Arnaud Delorme, Aug 9th, 2022
+# This script is part of the code used to generate the results presented in:
+# Delorme A. EEG is better left alone. Sci Rep. 2023 Feb 9;13(1):2372. doi: 10.1038/s41598-023-27528-0. PMID: 36759667; PMCID: PMC9911389.
+# https://pubmed.ncbi.nlm.nih.gov/36759667/
+#
+# This contains the code for the optimal MNE pipeline in the paper above. 
+# An example dataset is provided in the data folder.
+# Simple plotting for one channel for the two conditions is provided at the end of the script.
+#
+# Requires to have Python installed, with mne, autoreject libraries
+# Tested successfuly with Python 3.8 and MNE 1.1.0, and autoreject 0.3.1
+#
+# Arnaud Delorme, 2022
 
 # -----------------
 # Parameters
@@ -31,7 +30,7 @@ epochHiLim  = 0.7;
 
 import mne
 import os
-import sys
+import matplotlib.pyplot as plt
 from mne.datasets import sample
 import autoreject
 
@@ -53,11 +52,16 @@ epochs = epochs_all[cond1, cond2]
 ar = autoreject.AutoReject(n_interpolate=[1, 2, 3, 4], random_state=11,n_jobs=1, verbose=True)
 ar.fit(epochs[:20])  # fit on a few epochs to save time
 epochs_ar, reject_log = ar.transform(epochs, return_log=True)
-
-# Export to EEGLAB format
+    
+# Export to EEGLAB format if needed
 fileout = os.path.splitext(filename)[0];
 fileout_cond1 = fileout + '_cond1_mne.set'
 fileout_cond2 = fileout + '_cond2_mne.set'
 epochs_ar[cond1].export(fileout_cond1, overwrite=True)
 epochs_ar[cond2].export(fileout_cond2, overwrite=True)
 
+# Plot one of the channels
+plt.plot(epochs_ar[0].times, epochs_ar[0].get_data()[0,1,:].transpose())
+plt.plot(epochs_ar[1].times, epochs_ar[1].get_data()[0,1,:].transpose())
+plt.legend([cond1,cond2])
+plt.show()
