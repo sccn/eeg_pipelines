@@ -1,6 +1,6 @@
 ![Screen Shot 2023-03-13 at 8 14 04 PM](https://user-images.githubusercontent.com/1872705/224911989-4e8f2971-5f6a-469f-9022-b8eac2953346.png)
 
-# Why EEG is better left alone?
+# Why is EEG better left alone?
 
 The best is to read the article. In short, for standard, relatively clean EEG, removing artifacts cannot compensate for the loss of statistical power due to the loss of data trials. 
 
