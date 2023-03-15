@@ -8,8 +8,15 @@
 %
 % Requires to have Fieldtrip installed
 % Tested successfuly with Fieldtrip version of Dec 6, 2023
-
 % Arnaud Delorme, 2022
+
+% Difference with version of the script shown on YOUTUBE 
+% - PERFORM 2-step trial processing instead of a single step (which filters data trials instead of continuous data)
+% - Fixed high-pass filtering bug (set the frequency but forgot to turn it on on the YOUTUBE video)
+% - changed channel for rejection
+% - add removing channel section
+% - removed detrending
+% - Perform simpler plotting
 
 % beginning of parameters ************
 
