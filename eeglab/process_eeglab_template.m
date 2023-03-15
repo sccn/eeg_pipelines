@@ -11,6 +11,10 @@
 %
 % Arnaud Delorme, 2022
 
+% Difference with the version show on YOUTUBE at https://www.youtube.com/watch?v=yaA1wq2nSIc
+% - removed plotting
+% - removed STUDY section and perform simpler plotting of one channel 
+
 % beginning of parameters ************
 
 % You may select your own file and conditions below
