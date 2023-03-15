@@ -13,6 +13,14 @@
 #
 # Arnaud Delorme, 2022
 
+# Difference with the version shown on YOUTUBE
+# - read EEGLAB file directly instead of using BIDS (so the local file to the BIDS repo can be used)
+# - removed montage (this was not necessary)
+# - removing ICA (did nothing)
+# - remove some plotting
+# - export two files to EEGLAB format, one for oddball and one for standard
+# - remove jupyter notebook sections
+
 # -----------------
 # Parameters
 # -----------------
