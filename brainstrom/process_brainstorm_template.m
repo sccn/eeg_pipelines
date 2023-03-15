@@ -15,6 +15,12 @@
 %
 % Arnaud Delorme, 2022
 
+% Difference with version of the script shown on YOUTUBE
+% - reworked code to import epoched data trials
+% - remove some plotting and added custom code to plot one channel (could not remove all)
+% - removed code for DC offset
+% - added code to handle occasional crash
+
 % beginning of parameters ************
 
 % You may select your own file and conditions below
