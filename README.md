@@ -6,6 +6,12 @@ The best is to read the article. In short, for standard, relatively clean EEG, r
 
 https://www.nature.com/articles/s41598-023-27528-0
 
+# Content of this repository
+
+This repository contains 4 stand-alone pipelines (along with one test dataset), in EEGLAB, Fieldtrip, Brainstorm, and MNE. The pipelines have been optimized to process event-related potential and are described in the manuscript above. The pipelines run on the sample data provided here. They do require a separate installation of the corresponding software packages.
+
+Based on our scanning of the parameter space for artifact rejection and preprocessing, these are the **best EEG pipelines** for EEGLAB, Fieldtrip, Brainstorm, and MNE to process ERP. Test them yourself by plugging in your data.
+
 # Associated videos
 
 * [What is the optimal automated EEG pre-processing pipeline](https://www.youtube.com/watch?v=mW7u2YEK3ZY)
@@ -16,8 +22,3 @@ https://www.nature.com/articles/s41598-023-27528-0
 * [Designing an MNE automated pipeline](https://www.youtube.com/watch?v=31N8WHioQ3U)
 * [Designing an Brainstorm automated pipeline](https://www.youtube.com/watch?v=8Wyhu2cecCU)
 
-# Content of this repository
-
-This repository contains 4 stand-alone pipelines (along with one test dataset), in EEGLAB, Fieldtrip, Brainstorm, and MNE. The pipelines have been optimized to process event-related potential and are described in the manuscript above. The pipelines run on the sample data provided here. They do require a separate installation of the corresponding software packages.
-
-Based on our scanning of the parameter space for artifact rejection and preprocessing, these are the **best EEG pipelines** for EEGLAB, Fieldtrip, Brainstorm, and MNE to process ERP. Test them yourself by plugging in your data.
