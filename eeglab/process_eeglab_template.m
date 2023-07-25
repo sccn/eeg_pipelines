@@ -39,7 +39,7 @@ EEG = pop_clean_rawdata(EEG, 'FlatlineCriterion',4,'ChannelCriterion',0.85,'Line
     'BurstCriterion',20,'WindowCriterion',0.25,'BurstRejection','on','Distance','Euclidian','WindowCriterionTolerances',[-Inf 7] );
 
 % Run ICA and IC Label
-EEG = pop_runica(EEG, 'icatype', 'picard', 'maxiter', 500, 'mode', 'standard'); % mode standard made default 07/2023
+EEG = pop_runica(EEG, 'icatype', 'picard', 'maxiter', 500); % Use mode standard for Infomax
 EEG = pop_iclabel(EEG, 'default');
 EEG = pop_icflag(EEG, [NaN NaN;0.9 1;0.9 1;NaN NaN;NaN NaN;NaN NaN;NaN NaN]);
 EEG = pop_subcomp( EEG, [], 0);
